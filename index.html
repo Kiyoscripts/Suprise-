@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Surprise Video</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #1f1c2c, #928DAB);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+      transition: background 1s ease;
+    }
+
+    h1 {
+      color: white;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .button {
+      padding: 20px 40px;
+      font-size: 24px;
+      color: #fff;
+      background: linear-gradient(135deg, #ff416c, #ff4b2b);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.4);
+    }
+
+    .video-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1s ease;
+    }
+
+    .video-container.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    video {
+      width: 80%;
+      max-width: 1000px;
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <button class="button"> Surprise </button>
+
+  <div class="video-container" id="videoContainer">
+    <video id="surpriseVideo" src="Relapse.mp4" controls autoplay></video>
+  </div>
+
+  <script>
+    const button = document.querySelector('.button');
+    const videoContainer = document.getElementById('videoContainer');
+    const video = document.getElementById('surpriseVideo');
+
+    button.addEventListener('click', () => {
+      videoContainer.classList.add('show');
+      video.play();
+      document.body.style.background = "#000";
+    });
+
+    // Optional: When video ends, hide it again
+    video.addEventListener('ended', () => {
+      videoContainer.classList.remove('show');
+      document.body.style.background = "linear-gradient(135deg, #1f1c2c, #928DAB)";
+    });
+  </script>
+
+</body>
+</html>
